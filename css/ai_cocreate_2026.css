@@ -2775,10 +2775,12 @@ h1 {
 .sticky-text {
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  min-width: 0;
-  flex: 0 1 auto;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+  width: 100%;
 }
+
 
 .sticky-label {
   display: block;

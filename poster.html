@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Human-AI Co-Creation · ECCV 2026 Workshop · Poster</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #111;
+    --muted: #5f5b62;
+    --accent: #9fb7ff;
+    --accent-2: #6f83d8;
+    --soft: #dfe7ff;
+    --soft-2: #edf2ff;
+    --gold: #ffd166;
+    --pink: #ff6fb1;
+    --orange: #ff9f43;
+    --paper: #fafbff;
+  }
+
+  @page { size: A3 portrait; margin: 0; }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: #e8eaf3;
+    font-family: "Inter", -apple-system, "Helvetica Neue", sans-serif;
+    color: var(--ink);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .poster {
+    width: 297mm;
+    height: 420mm;
+    margin: 16mm auto;
+    background:
+      radial-gradient(circle at 88% 6%, rgba(159, 183, 255, 0.20) 0 70mm, transparent 72mm),
+      radial-gradient(circle at 4% 96%, rgba(255, 209, 102, 0.10) 0 50mm, transparent 52mm),
+      linear-gradient(180deg, #ffffff 0%, var(--paper) 100%);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 18px 60px rgba(50, 60, 100, 0.18);
+  }
+
+  @media print {
+    html, body { background: #fff; }
+    .poster { margin: 0; box-shadow: none; }
+  }
+
+  /* === HEADER === */
+  .head { padding: 12mm 14mm 5mm; position: relative; }
+
+  .head-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6mm;
+    margin-bottom: 5mm;
+  }
+  .head-left { display: flex; align-items: center; gap: 4mm; }
+
+  .eccv-logo { height: 14mm; width: auto; }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 2mm;
+    padding: 1.4mm 3.5mm;
+    border-radius: 999px;
+    background: var(--soft);
+    color: var(--accent-2);
+    font-size: 10pt;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .badge::before {
+    content: "";
+    width: 1.8mm; height: 1.8mm;
+    border-radius: 50%;
+    background: var(--accent-2);
+  }
+
+  .head-meta {
+    text-align: right;
+    font-size: 11pt;
+    color: var(--muted);
+    line-height: 1.4;
+    font-weight: 500;
+  }
+  .head-meta strong { color: var(--ink); font-weight: 700; font-size: 12pt; }
+
+  h1.title {
+    font-size: 70pt;
+    line-height: 0.92;
+    letter-spacing: -0.05em;
+    font-weight: 900;
+    margin-bottom: 4mm;
+  }
+
+  /* 五彩手写字母 -- 跟网页 morph-word 同色 */
+  .title-human {
+    display: inline-block;
+    font-family: "Caveat", "Brush Script MT", cursive;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    font-size: 1.05em;
+  }
+  .title-human span { display: inline-block; }
+  .title-human span:nth-child(1) { color: #ff9f43; }
+  .title-human span:nth-child(2) { color: #5f8cff; }
+  .title-human span:nth-child(3) { color: #ff6fb1; }
+  .title-human span:nth-child(4) { color: #4ecdc4; }
+  .title-human span:nth-child(5) { color: #8f7cff; }
+  .title-human span:nth-child(6) { color: #111; }
+  .title-human span:nth-child(7) { color: #ffca3a; }
+  .title-human span:nth-child(8) { color: #4d96ff; }
+
+  .title-co {
+    display: block;
+    font-family: "Inter", sans-serif;
+    font-weight: 900;
+    background: linear-gradient(120deg, #6c5ce7 0%, #ff6fb1 55%, #ff9f43 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .lead {
+    font-family: "Caveat", cursive;
+    font-size: 28pt;
+    color: var(--ink);
+    line-height: 1.1;
+    margin-top: 1mm;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 3mm;
+  }
+  .lead::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 2mm;
+    background:
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='14' viewBox='0 0 200 14'><path d='M0,8 Q50,0 100,8 T200,8' stroke='%23ff6fb1' stroke-width='3' fill='none' stroke-linecap='round'/></svg>")
+      repeat-x;
+    background-size: 28mm 2mm;
+    opacity: 0.85;
+  }
+
+  /* === ABSTRACT (字号放大) === */
+  .abstract {
+    padding: 6mm 14mm 5mm;
+    font-size: 12.5pt;
+    line-height: 1.62;
+    color: var(--ink);
+    font-weight: 400;
+  }
+  .abstract strong { color: var(--accent-2); font-weight: 700; }
+
+  /* === TOPICS (字号放大) === */
+  .topics-block { padding: 3mm 14mm 7mm; }
+  .topics-head {
+    display: flex;
+    align-items: baseline;
+    gap: 4mm;
+    margin-bottom: 4mm;
+  }
+  .topics-head h2 {
+    font-size: 22pt;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+  .topics-head .small {
+    font-size: 11pt;
+    color: var(--muted);
+    font-weight: 500;
+  }
+  .topics-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.4mm 8mm;
+  }
+  .topics-grid li {
+    list-style: none;
+    font-size: 11.5pt;
+    color: var(--ink);
+    display: flex;
+    gap: 2.5mm;
+    align-items: baseline;
+    line-height: 1.4;
+  }
+  .topics-grid li::before {
+    content: "";
+    width: 1.6mm; height: 1.6mm;
+    margin-top: 1.4mm;
+    border-radius: 50%;
+    background: var(--accent-2);
+    flex: 0 0 auto;
+  }
+
+  /* === SPEAKERS (强化) === */
+  .speakers-block {
+    padding: 8mm 14mm 8mm;
+    background: linear-gradient(180deg, rgba(223, 231, 255, 0.45), rgba(223, 231, 255, 0.10));
+    position: relative;
+  }
+  .speakers-block h2 {
+    font-size: 26pt;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 7mm;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5mm;
+  }
+  .speakers-block h2::before,
+  .speakers-block h2::after {
+    content: "";
+    flex: 0 0 14mm;
+    height: 0.6mm;
+    background: var(--accent-2);
+    opacity: 0.45;
+  }
+
+  .speakers-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6mm 4mm;
+  }
+  .speaker { text-align: center; }
+  .speaker .photo {
+    width: 40mm;
+    height: 40mm;
+    border-radius: 50%;
+    background: var(--soft) center / cover no-repeat;
+    border: 1.5mm solid #fff;
+    box-shadow: 0 4mm 12mm rgba(50, 60, 100, 0.18);
+    margin: 0 auto 3mm;
+  }
+  .speaker .name {
+    font-size: 13.5pt;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1.2mm;
+  }
+  .speaker .aff {
+    font-size: 10.5pt;
+    color: var(--muted);
+    line-height: 1.3;
+  }
+
+  /* === DATES (强化) === */
+  .dates-block {
+    padding: 9mm 14mm;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 8mm;
+    align-items: center;
+    background: linear-gradient(135deg, #1d2547 0%, #2a3470 100%);
+    color: #fff;
+    position: relative;
+  }
+  .dates-block::before {
+    content: "";
+    position: absolute;
+    right: 8mm;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 28mm;
+    height: 28mm;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 209, 102, 0.20), transparent 70%);
+    pointer-events: none;
+  }
+  .dates-label {
+    font-family: "Caveat", cursive;
+    font-size: 48pt;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    padding-right: 8mm;
+    border-right: 0.5mm solid rgba(255,255,255,0.30);
+  }
+  .dates-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5mm 8mm;
+  }
+  .dates-list .item { display: flex; flex-direction: column; gap: 0.6mm; }
+  .dates-list .when {
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.01em;
+    font-size: 14pt;
+  }
+  .dates-list .what {
+    color: rgba(255,255,255,0.88);
+    font-size: 11pt;
+  }
+
+  /* === ORGANIZERS (紧凑单行 8 列) === */
+  .orgs-block { padding: 6mm 14mm 4mm; }
+  .orgs-block .h-row {
+    display: flex;
+    align-items: baseline;
+    gap: 3mm;
+    margin-bottom: 4mm;
+  }
+  .orgs-block h2 {
+    font-size: 16pt;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+  .orgs-block .small {
+    font-size: 9.5pt;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  .orgs-grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 3mm 2mm;
+  }
+  .org { text-align: center; }
+  .org .photo {
+    width: 17mm;
+    height: 17mm;
+    border-radius: 50%;
+    background: var(--soft-2) center / cover no-repeat;
+    border: 0.6mm solid #fff;
+    box-shadow: 0 1.5mm 4mm rgba(50, 60, 100, 0.12);
+    margin: 0 auto 1.4mm;
+  }
+  .org .name {
+    font-size: 8.5pt;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 0.2mm;
+  }
+  .org .aff {
+    font-size: 7pt;
+    color: var(--muted);
+    line-height: 1.2;
+  }
+
+  /* === SPONSORS STRIP === */
+  .sponsors-strip {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    padding: 4mm 14mm 4mm;
+    background: linear-gradient(180deg, transparent, rgba(223, 231, 255, 0.45));
+    border-top: 0.4mm solid rgba(17,17,17,0.08);
+  }
+  .sponsors-strip-label {
+    font-size: 8pt;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent-2);
+    margin-bottom: 2.5mm;
+    text-align: center;
+  }
+.sponsors-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10mm;
+  flex-wrap: wrap;
+}
+
+.sponsors-row .slot {
+  height: 14mm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+.sponsors-row img {
+  height: 10mm;
+  width: auto;
+  max-width: 32mm;
+  object-fit: contain;
+  opacity: 0.85;
+  display: block;
+}
+
+/* 单独按 alt 调整每个 logo 的高度 */
+.sponsors-row img[alt="FBK"]                  { height: 12mm; }
+.sponsors-row img[alt="University of Verona"] { height: 11mm; }
+.sponsors-row img[alt="Canva"]                { height: 10mm; }
+.sponsors-row img[alt="Adobe Research"]       { height: 9mm; }
+.sponsors-row img[alt="ELLIS Alicante"]       { height: 11mm; }
+.sponsors-row img[alt="University of Trento"] { height: 14mm; }
+
+  /* Decorative date stamp */
+  .corner-mark {
+    position: absolute;
+    right: 10mm;
+    top: 32mm;
+    width: 26mm;
+    height: 26mm;
+    border-radius: 50%;
+    background: #fff;
+    display: grid;
+    place-items: center;
+    box-shadow: 0 3mm 10mm rgba(50, 60, 100, 0.14);
+    font-family: "Caveat", cursive;
+    text-align: center;
+    line-height: 1;
+    z-index: 5;
+    transform: rotate(6deg);
+  }
+  .corner-mark .day {
+    font-size: 26pt;
+    color: var(--ink);
+    font-weight: 700;
+  }
+  .corner-mark .mo {
+    font-size: 10pt;
+    color: var(--accent-2);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-top: 0.8mm;
+  }
+</style>
+</head>
+<body>
+
+<article class="poster">
+
+  <div class="corner-mark" aria-hidden="true">
+    <div class="day">10</div>
+    <div class="mo">Oct 2026</div>
+  </div>
+
+  <!-- === HEADER === -->
+  <header class="head">
+    <div class="head-row">
+      <div class="head-left">
+        <img class="eccv-logo" src="assets/images/eccvlogo.svg" alt="ECCV 2026" />
+        <span class="badge">Workshop</span>
+      </div>
+      <div class="head-meta">
+        <strong>October 10, 2026</strong><br>
+        Malmö · Sweden
+      </div>
+    </div>
+
+    <h1 class="title">
+      <span class="title-human" aria-label="Human-AI">
+        <span>H</span><span>u</span><span>m</span><span>a</span><span>n</span><span>-</span><span>A</span><span>I</span>
+      </span>
+      <span class="title-co">Co-Creation</span>
+      <!-- <span class="title-co">Co-Creation</span> -->
+    </h1>
+
+    <div class="lead">Human creativity rarely begins with precision.</div>
+  </header>
+
+  <!-- === ABSTRACT === -->
+  <section class="abstract">
+    In early visual ideation, people think through sketches, metaphors, sensations, emotions, and evolving fragments of intent. This workshop explores how <strong>multimodal generative AI</strong> can move beyond semantic correctness and become a <strong>creative partner</strong> for exploratory, ambiguous, and fluid human-centered creation — preserving human agency and authorship.
+  </section>
+
+  <!-- === TOPICS === -->
+  <section class="topics-block">
+    <div class="topics-head">
+      <h2>Call for Papers</h2>
+      <span class="small">Topics of interest include, but are not limited to:</span>
+    </div>
+    <ul class="topics-grid">
+      <li>Human-centered GenAI models</li>
+      <li>Cognitive foundations of creativity</li>
+      <li>Collaborative multimodal AI</li>
+      <li>Human-centric benchmarks and evaluation</li>
+      <li>GenAI for creative processes</li>
+      <li>Novel applications for creativity</li>
+      <li>Multimodal representation and alignment</li>
+      <li>Ethical GenAI in creative domains</li>
+      <li>Creativity-oriented HCI paradigms</li>
+      <li>Interactive and iterative creation tools</li>
+    </ul>
+  </section>
+
+  <!-- === SPEAKERS === -->
+  <section class="speakers-block">
+    <h2>Invited Speakers</h2>
+    <div class="speakers-grid">
+      <div class="speaker">
+        <div class="photo" style="background-image:url('image/ChenChangeLoy_logo.png')"></div>
+        <div class="name">Chen Change Loy</div>
+        <div class="aff">Nanyang Technological<br>University</div>
+      </div>
+      <div class="speaker">
+        <div class="photo" style="background-image:url('image/mira.jpeg')"></div>
+        <div class="name">Mira Dontcheva</div>
+        <div class="aff">Adobe Research</div>
+      </div>
+      <div class="speaker">
+        <div class="photo" style="background-image:url('image/fabio.jpeg')"></div>
+        <div class="name">Fabio Pellacini</div>
+        <div class="aff">University of Modena<br>and Reggio Emilia</div>
+      </div>
+      <div class="speaker">
+        <div class="photo" style="background-image:url('image/yuhui.jpeg')"></div>
+        <div class="name">Yuhui Yuan</div>
+        <div class="aff">Canva</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === DATES === -->
+  <section class="dates-block">
+    <div class="dates-label">Important<br>Dates</div>
+    <div class="dates-list">
+      <div class="item">
+        <span class="when">Jun 26, 2026</span>
+        <span class="what">Paper submission deadline</span>
+      </div>
+      <div class="item">
+        <span class="when">Jul 20, 2026</span>
+        <span class="what">Acceptance notification</span>
+      </div>
+      <div class="item">
+        <span class="when">Jul 31, 2026</span>
+        <span class="what">Camera-ready submission</span>
+      </div>
+      <div class="item">
+        <span class="when">Oct 10, 2026</span>
+        <span class="what">Workshop day · ECCV 2026</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- === ORGANIZERS === -->
+  <section class="orgs-block">
+    <div class="h-row">
+      <h2>Organizers</h2>
+      <span class="small">Across academia and industry</span>
+    </div>
+    <div class="orgs-grid">
+      <div class="org">
+        <div class="photo" style="background-image:url('image/organizer/yiming_wang.jpg')"></div>
+        <div class="name">Yiming Wang</div>
+        <div class="aff">FBK</div>
+      </div>
+      <div class="org">
+        <div class="photo" style="background-image:url('image/organizer/loris.jpg')"></div>
+        <div class="name">Loris Bazzani</div>
+        <div class="aff">University of Verona</div>
+      </div>
+      <div class="org">
+        <div class="photo" style="background-image:url('image/organizer/zanxi-id.png')"></div>
+        <div class="name">Zanxi Ruan</div>
+        <div class="aff">University of  Verona</div>
+      </div>
+      <div class="org">
+        <div class="photo" style="background-image:url('image/organizer/umberto.jpg')"></div>
+        <div class="name">Umberto Michieli</div>
+        <div class="aff">Canva Research</div>
+      </div>
+      <div class="org">
+        <div class="photo" style="background-image:url('image/organizer/fabian.png')"></div>
+        <div class="name">Fabian Caba H.</div>
+        <div class="aff">Adobe Research</div>
+      </div>
+      <div class="org">
+        <div class="photo" style="background-image:url('image/organizer/marco.png')"></div>
+        <div class="name">Marco Cristani</div>
+        <div class="aff">University of  Verona</div>
+      </div>
+      <div class="org">
+        <div class="photo" style="background-image:url('image/organizer/nuria.jpg')"></div>
+        <div class="name">Nuria Oliver</div>
+        <div class="aff">ELLIS Alicante</div>
+      </div>
+      <div class="org">
+        <div class="photo" style="background-image:url('image/organizer/nicu.jpg')"></div>
+        <div class="name">Nicu Sebe</div>
+        <div class="aff">University of Trento</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === SPONSORS STRIP === -->
+  <div class="sponsors-strip">
+    <!-- <div class="sponsors-strip-label">Sponsor &amp; Supporting Institutions</div> -->
+<div class="sponsors-row">
+  <div class="slot"><img src="image/fbk.svg" alt="FBK"/></div>
+  <div class="slot"><img src="image/univr.webp" alt="University of Verona"/></div>
+  <div class="slot"><img src="image/canva.svg" alt="Canva"/></div>
+  <div class="slot"><img src="image/adobe.svg" alt="Adobe Research"/></div>
+  <div class="slot"><img src="image/ellis.png" alt="ELLIS Alicante"/></div>
+  <div class="slot"><img src="image/unitn.svg" alt="University of Trento"/></div>
+</div>
+  </div>
+
+</article>
+
+</body>
+</html>
