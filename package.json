@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "pdf:poster": "node scripts/export-poster-pdf.mjs poster.html poster-puppeteer.pdf"
+  },
+  "devDependencies": {
+    "puppeteer-core": "^24.43.1"
+  }
+}

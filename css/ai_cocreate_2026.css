@@ -2917,8 +2917,10 @@ h1 {
 /* === 支持机构: 也裸,只剩 logo + 名字 === */
 .sponsors-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 28px 24px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 220px));
+  justify-content: center;
+  align-items: center;
+  gap: 32px 36px;
 }
 
 .sponsor-card {
@@ -2926,16 +2928,18 @@ h1 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+
   padding: 8px 12px;
   background: none;
   border: none;
   box-shadow: none;
   text-decoration: none;
   color: inherit;
+
   transition: transform 240ms ease, opacity 240ms ease;
-  opacity: 0.85;
+  opacity: 0.9;
 }
+
 
 .sponsor-card:not(.sponsor-card--gold):hover {
   transform: translateY(-3px);
@@ -2944,7 +2948,7 @@ h1 {
 
 .sponsor-logo {
   width: 100%;
-  height: 56px;
+  height: 78px; /* 原来是 56px，这里放大 */
   display: flex;
   align-items: center;
   justify-content: center;
