@@ -1464,6 +1464,14 @@ h1 {
   font-weight: 400;
 }
 
+.speaker-tile .talk-title-preview {
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.35;
+  font-weight: 700;
+  margin-top: 2px;
+}
+
 .speaker-tile .view {
   margin-top: auto;
   color: var(--accent-2);
@@ -1724,6 +1732,41 @@ h1 {
   font-size: 17px;
   font-weight: 700;
   margin-bottom: 16px;
+}
+
+.talk-details {
+  margin: 0 0 18px;
+  border-radius: 18px;
+  background: rgba(223, 231, 255, 0.42);
+  border: 1px solid rgba(111, 131, 216, 0.16);
+  overflow: hidden;
+}
+
+.talk-details summary {
+  min-height: 46px;
+  display: flex;
+  align-items: center;
+  padding: 12px 18px;
+  color: var(--accent-2);
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.talk-details-body {
+  padding: 0 18px 18px;
+}
+
+.talk-details-body h3 {
+  color: var(--ink);
+  font-size: clamp(19px, 2vw, 28px);
+  line-height: 1.22;
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+}
+
+.speaker-bio-content .talk-details-body p {
+  margin-bottom: 0;
 }
 
 .speaker-bio-content p {
@@ -2011,6 +2054,24 @@ h1 {
   color: var(--ink);
   font-size: 15px;
   line-height: 1.35;
+  font-weight: 700;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.program-list a {
+  color: var(--accent-2);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(111, 131, 216, 0.32);
+}
+
+.program-list a:hover {
+  border-bottom-color: currentColor;
+}
+
+.program-list small {
+  color: var(--muted);
+  font-size: 13px;
   font-weight: 700;
 }
 
