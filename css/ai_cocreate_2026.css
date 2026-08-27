@@ -1435,6 +1435,10 @@ h1 {
   background-image: url("../image/mira.jpeg");
 }
 
+.avatar.cusuh {
+  background-image: url("../image/ham_icon.jpeg");
+}
+
 .avatar.fabio {
   background-image: url("../image/fabio.jpeg");
 }
